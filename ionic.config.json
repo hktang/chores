@@ -1,0 +1,8 @@
+{
+  "name": "chores",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "pro_id": "b8d264b6"
+}
