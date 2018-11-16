@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
+import { MessagesComponent } from '../messages/messages.component';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -12,6 +14,6 @@ import { HomePage } from './home.page';
     FormsModule,
     RouterModule.forChild([{ path: '', component: HomePage }])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, MessagesComponent]
 })
 export class HomePageModule {}
