@@ -12,7 +12,7 @@
   </ion-item>
 
   <ion-list *ngIf="tasks">
-      <ion-item *ngFor="let task of tasks">
+      <ion-item *ngFor="let task of tasks" (click)="presentModal(task)">
         <ion-label>{{task.name}}</ion-label>
         <ion-button class="delete" (click)="delete(task)">x</ion-button>
       </ion-item>

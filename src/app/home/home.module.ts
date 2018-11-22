@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { ModalPageModule } from '../modal/modal.module';
+import { ModalPage } from '../modal/modal.page';
 
 import { MessagesComponent } from '../messages/messages.component';
 
@@ -12,8 +14,10 @@ import { MessagesComponent } from '../messages/messages.component';
     IonicModule,
     CommonModule,
     FormsModule,
+    ModalPageModule,
     RouterModule.forChild([{ path: '', component: HomePage }])
   ],
-  declarations: [HomePage, MessagesComponent]
+  declarations: [HomePage, MessagesComponent],
+  entryComponents: [ModalPage]
 })
 export class HomePageModule {}
