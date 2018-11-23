@@ -5,6 +5,13 @@
 </ion-header>
 
 <ion-content padding>
-  {{task.name}}
-  <ion-button (click)="closeModal()">Close</ion-button>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{task.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="closeModal()">Okay</ion-button>
+  
 </ion-content>
