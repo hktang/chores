@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { OverlayEventDetail } from '@ionic/core'; 
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
 
@@ -36,6 +37,11 @@ export class HomePage implements OnInit {
       component: ModalPage,
       componentProps: { task, props:{title:"Task detail"}}
     });
-    return await modal.present();
+    await modal.present();
+
+    modal.onDidDismiss()
+      .then((detail:OverlayEventDetail) => {
+        this.tasks.push(detail.data);
+      });
   }
 }

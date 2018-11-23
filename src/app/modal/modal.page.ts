@@ -33,16 +33,18 @@ export class ModalPage implements OnInit {
   }
 
   add(name: string): void {
+
     name = name.trim();
-    if (!name) {
-      return;
-    }
+
+    if (!name) {return;}
+
     this.taskService.addTask({ name } as Task).subscribe(task => {
       this.tasks.push(task);
+      this.closeModal(task);
     });
   }
 
-  closeModal() {
-    this.modalController.dismiss();
+  closeModal(task:Task) {
+    this.modalController.dismiss(task);
   }
 }
