@@ -1,10 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Task detail</ion-title>
+  <ion-toolbar  color="secondary">
+    <ion-title>{{props.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-item>
+    <ion-input #taskName type="text" placeholder="New task"></ion-input>
+    <ion-button (click)="add(taskName.value); taskName.value=''">Add</ion-button>
+  </ion-item>
 
   <ion-list>
     <ion-item>

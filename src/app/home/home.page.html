@@ -1,15 +1,10 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Tasks</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <ion-item>
-    <ion-input #taskName type="text" placeholder="New task"></ion-input>
-    <ion-button (click)="add(taskName.value); taskName.value=''">Add</ion-button>
-  </ion-item>
 
   <ion-list *ngIf="tasks">
       <ion-item *ngFor="let task of tasks" (click)="presentModal(task)">
