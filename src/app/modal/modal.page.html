@@ -6,17 +6,29 @@
 
 <ion-content padding>
 
-  <ion-item>
-    <ion-input #taskName type="text" placeholder="New task"></ion-input>
-    <ion-button (click)="add(taskName.value); taskName.value=''">Add</ion-button>
-  </ion-item>
-
-  <ion-list>
+  <ion-list *ngIf="task">
     <ion-item>
       <ion-label>{{task.name}}</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-button expand="full" (click)="closeModal()">Okay</ion-button>
+  <ion-button 
+    *ngIf="task; else addTaskButton" 
+    expand="full" 
+    (click)="closeModal()">Okay</ion-button>
   
+  <ng-template #addTaskButton>
+    <ion-item>
+      <ion-input 
+        #taskName 
+        type="text" 
+        placeholder="New task"
+        (keyup.enter)="closeModal(taskName.value); taskName.value=''">
+      </ion-input>
+    </ion-item>
+    <ion-button 
+      (click)="closeModal(taskName.value); taskName.value=''"
+      expand="full">Add</ion-button>
+  </ng-template>
+
 </ion-content>

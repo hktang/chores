@@ -16,35 +16,17 @@ export class ModalPage implements OnInit {
   tasks: Task[];
 
   props: {
-    title : "Modal"
-  }
+    title: "Modal";
+  };
 
   constructor(
     private taskService: TaskService,
     public modalController: ModalController
   ) {}
 
-  ngOnInit() {
-    this.getTasks();
-  }
+  ngOnInit() {}
 
-  getTasks(): void {
-    this.taskService.getTasks().subscribe(tasks => (this.tasks = tasks));
-  }
-
-  add(name: string): void {
-
-    name = name.trim();
-
-    if (!name) {return;}
-
-    this.taskService.addTask({ name } as Task).subscribe(task => {
-      this.tasks.push(task);
-      this.closeModal(task);
-    });
-  }
-
-  closeModal(task:Task) {
-    this.modalController.dismiss(task);
+  closeModal(taskName?: String) {
+    this.modalController.dismiss(taskName);
   }
 }

@@ -7,16 +7,19 @@
 <ion-content>
 
   <ion-list *ngIf="tasks">
-      <ion-item *ngFor="let task of tasks" (click)="presentModal(task)">
+      <ion-item *ngFor="let task of tasks" 
+        (click)="presentModal(task, 'Edit task')">
         <ion-label>{{task.name}}</ion-label>
-        <ion-icon name="checkmark-circle-outline" (click)="delete(task)"></ion-icon>
+        <ion-icon name="checkmark-circle-outline" 
+          (click)="delete(task)"></ion-icon>
       </ion-item>
   </ion-list>
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" 
+  (click)="presentModal(null, 'New Task')">
   <ion-fab-button>
-    <ion-icon name="add"></ion-icon>
+    <ion-icon name="add" ></ion-icon>
   </ion-fab-button>
 </ion-fab>
 

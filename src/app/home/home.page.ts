@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { OverlayEventDetail } from '@ionic/core'; 
+import { OverlayEventDetail } from "@ionic/core";
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
 
@@ -27,21 +27,31 @@ export class HomePage implements OnInit {
     this.taskService.getTasks().subscribe(tasks => (this.tasks = tasks));
   }
 
+  addTask(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.taskService.addTask({ name } as Task).subscribe(task => {
+      this.tasks.push(task);
+    });
+  }
+
   delete(task: Task): void {
     this.tasks = this.tasks.filter(tsk => tsk !== task);
     this.taskService.deleteTask(task).subscribe();
   }
 
-  async presentModal(task: Task) {
+  async presentModal(task?: Task, title?) {
+    const modalTitle = title ? title : "Modal";
     const modal = await this.modalController.create({
       component: ModalPage,
-      componentProps: { task, props:{title:"Task detail"}}
+      componentProps: { task, props: { title: modalTitle } }
     });
     await modal.present();
 
-    modal.onDidDismiss()
-      .then((detail:OverlayEventDetail) => {
-        this.tasks.push(detail.data);
-      });
+    modal.onWillDismiss().then((detail: OverlayEventDetail) => {
+      if (detail.data) {this.addTask(detail.data);}
+    });
   }
 }
