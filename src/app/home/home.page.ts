@@ -30,18 +30,28 @@ export class HomePage implements OnInit {
   }
 
   addTask(task: Task): void {
-    const name = task.name.trim();
-    if (!name) {
+    try {
+      const name = task.name.trim();
+      if (!name) return;
+    }
+    catch(error) {
       return;
     }
-    this.taskService.addTask(task as Task).subscribe(task => {
+    
+    this.taskService.addTask(task).subscribe(task => {
       this.tasks.push(task);
     });
   }
 
   updateTask(task: Task): void {
+    task.updated = new Date();
     this.taskService.updateTask(task)
       .subscribe(() => this.goBack());
+  }
+  
+  completeTask(task: Task): void {
+    task.completed = new Date();
+    this.updateTask(task);
   }
 
   goBack(): void {
