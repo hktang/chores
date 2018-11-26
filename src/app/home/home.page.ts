@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { OverlayEventDetail } from "@ionic/core";
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
+import { Location } from '@angular/common';
 
 import { Task } from "../tasks/task";
 import { TaskService } from "../tasks/task.service";
@@ -16,7 +17,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,15 @@ export class HomePage implements OnInit {
     });
   }
 
+  update(task: Task): void {
+    this.taskService.updateTask(task)
+      .subscribe(() => this.goBack());
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
   delete(task: Task): void {
     this.tasks = this.tasks.filter(tsk => tsk !== task);
     this.taskService.deleteTask(task).subscribe();
@@ -51,7 +62,11 @@ export class HomePage implements OnInit {
     await modal.present();
 
     modal.onWillDismiss().then((detail: OverlayEventDetail) => {
-      if (detail.data) {this.addTask(detail.data);}
+      if (typeof detail.data === "string") {
+        this.addTask(detail.data);
+      } else if (typeof detail.data === "object") {
+        this.update(detail.data);
+      };
     });
   }
 }
