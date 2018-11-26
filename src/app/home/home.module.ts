@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { HomePage } from "./home.page";
 import { ModalPageModule } from "../modal/modal.module";
 import { ModalPage } from "../modal/modal.page";
+import { CallbackPipe } from "../filter.pipe";
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ModalPage } from "../modal/modal.page";
     ModalPageModule,
     RouterModule.forChild([{ path: "", component: HomePage }])
   ],
-  declarations: [HomePage],
+  declarations: [HomePage, CallbackPipe],
   entryComponents: [ModalPage]
 })
 export class HomePageModule {}

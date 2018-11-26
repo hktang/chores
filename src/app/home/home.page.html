@@ -7,7 +7,7 @@
 <ion-content>
 
   <ion-list *ngIf="tasks">
-      <ion-item *ngFor="let task of tasks" 
+      <ion-item *ngFor="let task of tasks | callback:filterPendingTask" 
         (click)="presentModal(task, 'Edit task')">
         <ion-label>{{task.name}}</ion-label>
         <ion-icon name="checkmark-circle-outline" 

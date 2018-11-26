@@ -7,5 +7,5 @@ export class Task {
   created: Date = new Date();
   updated: Date = new Date();
   due: Date;
-  completed: Date;
+  completed: Date = null;
 }

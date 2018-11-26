@@ -44,14 +44,20 @@ export class HomePage implements OnInit {
   }
 
   updateTask(task: Task): void {
+    console.log("Task updated");
+    console.log(task);
     task.updated = new Date();
     this.taskService.updateTask(task)
-      .subscribe(() => this.goBack());
+      .subscribe();
   }
   
   completeTask(task: Task): void {
     task.completed = new Date();
     this.updateTask(task);
+  }
+
+  filterPendingTask(task: Task) {
+    return task.completed == null;
   }
 
   goBack(): void {
