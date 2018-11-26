@@ -7,8 +7,6 @@ import { HomePage } from "./home.page";
 import { ModalPageModule } from "../modal/modal.module";
 import { ModalPage } from "../modal/modal.page";
 
-import { MessagesComponent } from "../messages/messages.component";
-
 @NgModule({
   imports: [
     IonicModule,
@@ -17,7 +15,7 @@ import { MessagesComponent } from "../messages/messages.component";
     ModalPageModule,
     RouterModule.forChild([{ path: "", component: HomePage }])
   ],
-  declarations: [HomePage, MessagesComponent],
+  declarations: [HomePage],
   entryComponents: [ModalPage]
 })
 export class HomePageModule {}

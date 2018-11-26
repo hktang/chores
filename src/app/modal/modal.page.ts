@@ -21,8 +21,7 @@ export class ModalPage implements OnInit {
 
   ngOnInit() {}
 
-  closeModal(data: any) {
-    console.log(data);
-    this.modalController.dismiss(data);
+  closeModal(task: Task) {
+    this.modalController.dismiss(task);
   }
 }

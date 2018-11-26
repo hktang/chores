@@ -5,6 +5,8 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { AboutPage } from "./about.page";
 
+import { MessagesComponent } from "../messages/messages.component";
+
 @NgModule({
   imports: [
     IonicModule,
@@ -12,6 +14,6 @@ import { AboutPage } from "./about.page";
     FormsModule,
     RouterModule.forChild([{ path: "", component: AboutPage }])
   ],
-  declarations: [AboutPage]
+  declarations: [AboutPage, MessagesComponent]
 })
 export class AboutPageModule {}
