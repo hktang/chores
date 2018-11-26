@@ -6,7 +6,7 @@
 
 <ion-content padding>
 
-  <ion-list *ngIf="task">
+  <ion-list>
     <ion-item>
       <ion-input [(ngModel)]="task.name">{{task.name}}</ion-input>
     </ion-item>
@@ -30,23 +30,8 @@
     </ion-item>
   </ion-list>
 
-  <ion-button 
-    *ngIf="task; else addTaskButton" 
+  <ion-button
     expand="full" 
     (click)="closeModal(task)">Okay</ion-button>
-  
-  <ng-template #addTaskButton>
-    <ion-item>
-      <ion-input 
-        #taskName 
-        type="text" 
-        placeholder="New task"
-        (keyup.enter)="closeModal(taskName.value); taskName.value=''">
-      </ion-input>
-    </ion-item>
-    <ion-button 
-      (click)="closeModal(taskName.value); taskName.value=''"
-      expand="full">Add</ion-button>
-  </ng-template>
 
 </ion-content>

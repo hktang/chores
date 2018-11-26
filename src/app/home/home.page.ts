@@ -29,17 +29,17 @@ export class HomePage implements OnInit {
     this.taskService.getTasks().subscribe(tasks => (this.tasks = tasks));
   }
 
-  addTask(name: string): void {
-    name = name.trim();
+  addTask(task: Task): void {
+    const name = task.name.trim();
     if (!name) {
       return;
     }
-    this.taskService.addTask({ name } as Task).subscribe(task => {
+    this.taskService.addTask(task as Task).subscribe(task => {
       this.tasks.push(task);
     });
   }
 
-  update(task: Task): void {
+  updateTask(task: Task): void {
     this.taskService.updateTask(task)
       .subscribe(() => this.goBack());
   }
@@ -48,12 +48,13 @@ export class HomePage implements OnInit {
     this.location.back();
   }
 
-  delete(task: Task): void {
+  deleteTask(task: Task): void {
     this.tasks = this.tasks.filter(tsk => tsk !== task);
     this.taskService.deleteTask(task).subscribe();
   }
 
   async presentModal(task?: Task, title?) {
+    task = task === null ? new Task : task;
     const modalTitle = title ? title : "Modal";
     const modal = await this.modalController.create({
       component: ModalPage,
@@ -62,10 +63,12 @@ export class HomePage implements OnInit {
     await modal.present();
 
     modal.onWillDismiss().then((detail: OverlayEventDetail) => {
-      if (typeof detail.data === "string") {
-        this.addTask(detail.data);
-      } else if (typeof detail.data === "object") {
-        this.update(detail.data);
+      if (typeof detail.data === "object") {
+        if (detail.data.hasOwnProperty('id')) {
+          this.updateTask(detail.data);
+        } else {
+          this.addTask(detail.data);
+        }
       };
     });
   }
