@@ -11,6 +11,8 @@ export class ModalPage implements OnInit {
   @Input()
   task: Task;
 
+  minDate: Date;
+  
   props: {
     title: "Modal";
   };
@@ -19,7 +21,9 @@ export class ModalPage implements OnInit {
     public modalController: ModalController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.minDate = new Date();
+  }
 
   closeModal(task: Task) {
     this.modalController.dismiss(task);

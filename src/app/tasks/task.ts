@@ -6,6 +6,6 @@ export class Task {
   status: string = "pending";
   created: Date = new Date();
   updated: Date = new Date();
-  due: Date;
+  due: Date = null;
   completed: Date = null;
 }

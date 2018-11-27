@@ -8,7 +8,17 @@
 
   <ion-list>
     <ion-item>
-      <ion-input [(ngModel)]="task.name">{{task.name}}</ion-input>
+      <ion-input [(ngModel)]="task.name" 
+      placeholder="Task..." 
+      autofocus>{{task.name}}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Due date</ion-label>
+      <ion-datetime [(ngModel)]="task.due" 
+      display-format="DD MMM YYYY" 
+      picker-format="DD MMMM YYYY" 
+      min="{{minDate | date:'yyyy'}}"
+      ></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Repeat?</ion-label>
@@ -23,11 +33,6 @@
         <ion-select-option value="month">Month</ion-select-option>
         <ion-select-option value="quarter">Quarter</ion-select-option>
       </ion-select>
-    </ion-item>
-    <ion-item *ngIf="task.repeat">
-      <ion-label>Start date</ion-label>
-      <ion-datetime [(ngModel)]="task.due" display-format="DD MMM YYYY" 
-      picker-format="DD MMMM YYYY"></ion-datetime>
     </ion-item>
   </ion-list>
 
