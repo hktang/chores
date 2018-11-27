@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { OverlayEventDetail } from "@ionic/core";
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 
 import { Task } from "../tasks/task";
 import { TaskService } from "../tasks/task.service";
@@ -33,11 +33,10 @@ export class HomePage implements OnInit {
     try {
       const name = task.name.trim();
       if (!name) return;
-    }
-    catch(error) {
+    } catch (error) {
       return;
     }
-    
+
     this.taskService.addTask(task).subscribe(task => {
       this.tasks.push(task);
     });
@@ -47,10 +46,9 @@ export class HomePage implements OnInit {
     console.log("Task updated");
     console.log(task);
     task.updated = new Date();
-    this.taskService.updateTask(task)
-      .subscribe();
+    this.taskService.updateTask(task).subscribe();
   }
-  
+
   completeTask(task: Task): void {
     task.completed = new Date();
     this.updateTask(task);
@@ -70,7 +68,7 @@ export class HomePage implements OnInit {
   }
 
   async presentModal(task?: Task, title?) {
-    task = task === null ? new Task : task;
+    task = task === null ? new Task() : task;
     const modalTitle = title ? title : "Modal";
     const modal = await this.modalController.create({
       component: ModalPage,
@@ -80,12 +78,12 @@ export class HomePage implements OnInit {
 
     modal.onWillDismiss().then((detail: OverlayEventDetail) => {
       if (typeof detail.data === "object") {
-        if (detail.data.hasOwnProperty('id')) {
+        if (detail.data.hasOwnProperty("id")) {
           this.updateTask(detail.data);
         } else {
           this.addTask(detail.data);
         }
-      };
+      }
     });
   }
 }
