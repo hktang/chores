@@ -12,6 +12,7 @@ export class ModalPage implements OnInit {
   task: Task;
 
   minDate: Date;
+  maxDate: Date;
   
   props: {
     title: "Modal";
@@ -22,10 +23,17 @@ export class ModalPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.minDate = new Date();
+    this.setDateRange();
   }
 
   closeModal(task: Task) {
     this.modalController.dismiss(task);
+  }
+
+  setDateRange(){
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.minDate.setFullYear(this.minDate.getFullYear() - 1);
+    this.maxDate.setFullYear(this.maxDate.getFullYear() + 1);
   }
 }
