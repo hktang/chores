@@ -8,9 +8,9 @@ import { Injectable } from "@angular/core";
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const tasks = [
-      { id: 11, name: "Mr. Nice" },
-      { id: 12, name: "Narco" },
-      { id: 13, name: "Bombasto" }
+      { id: 11, name: "Mr. Nice", repeat: false },
+      { id: 12, name: "Narco", repeat: false },
+      { id: 13, name: "Bombasto", repeat: false }
     ];
     return { tasks };
   }

@@ -21,6 +21,8 @@ export class ModalPage implements OnInit {
   constructor(public modalController: ModalController) {}
 
   ngOnInit() {
+    console.log("Modal initialized");
+    console.log(this.task);
     this.setDateRange();
   }
 
