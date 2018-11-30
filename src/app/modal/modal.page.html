@@ -8,12 +8,12 @@
 
   <ion-list>
     <ion-item>
+      <ion-label position="floating" color="primary">Task</ion-label>
       <ion-input [(ngModel)]="task.name" 
-      placeholder="Task..." 
       autofocus>{{task.name}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Due date</ion-label>
+      <ion-label position="floating" color="primary">Due date</ion-label>
       <ion-datetime [(ngModel)]="task.due" 
       display-format="DD MMM YYYY" 
       picker-format="DD MMMM YYYY" 
@@ -22,11 +22,11 @@
       ></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Repeat?</ion-label>
+      <ion-label color="primary">Repeat?</ion-label>
       <ion-toggle [(ngModel)]="task.repeat" checked="{{task.repeat}}" ></ion-toggle>
     </ion-item>
     <ion-item *ngIf="task.repeat">
-      <ion-label>Repeat every...</ion-label>
+      <ion-label position="floating" color="primary">Repeat every...</ion-label>
       <ion-select [(ngModel)]="task.every"
       value="week" okText="Okay" cancelText="Dismiss">
         <ion-select-option value="week">Week</ion-select-option>
